@@ -1,0 +1,16 @@
+name: ChunkUnlocker
+version: 1.0
+main: org.Modstrype.twitchChunkPlugin.Main.Main
+author: Modstrype
+description: "Ein Plugin mit welchem man Chunks Schritt für Schritt freischalten kann."
+depend:
+  - ProtocolLib
+
+commands:
+  unlockchunk:
+    description: Schaltet einen Chunk in die jeweilige Himmelsrichtung (Nord/Sued/Ost/West) frei.
+    usage: /<command> <Himmelsrichtung>
+    aliases: /uc
+  expand:
+    description: Schaltet jeweils einen Chunk in jede Himmelsrichtung frei!
+    usage: /<command>
