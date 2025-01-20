@@ -1,21 +1,18 @@
 package org.Modstrype.twitchChunkPlugin.Chunk;
 
 
-import net.minecraft.network.protocol.game.ClientboundLevelChunkPacketData;
-import net.minecraft.network.protocol.game.ClientboundLevelChunkWithLightPacket;
-import net.minecraft.world.level.lighting.LevelLightEngine;
+
 import org.Modstrype.twitchChunkPlugin.Main.Main;
+import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
+import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.craftbukkit.v1_21_R1.CraftChunk;
-import org.bukkit.craftbukkit.v1_21_R1.CraftWorld;
-import org.bukkit.craftbukkit.v1_21_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 
-import java.util.BitSet;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 public class ChunkManager {
@@ -62,6 +59,24 @@ public class ChunkManager {
         }
         return world.getChunkAt(chunkX, chunkZ);
     }
+
+    public void updateChunks(Player player) {
+        Location location = player.getLocation();
+        Optional<World> randomWorld = Bukkit.getWorlds().stream().filter(world -> world != player.getWorld()).findFirst();
+
+        randomWorld.ifPresent(world -> player.teleport(world.getSpawnLocation()));
+        player.teleport(location);
+    }
+
+    public void resetUnlockedChunks() {
+        unlockedChunks.clear();
+        plugin.saveConfig();
+    }
+
+    public Set<String> getUnlockedChunks() {
+        return new HashSet<>(unlockedChunks); // Gibt eine Kopie zurück, um Modifikationen zu vermeiden
+    }
+
 
 
 }

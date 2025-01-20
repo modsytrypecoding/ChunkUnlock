@@ -51,17 +51,8 @@ public class MainCommand implements CommandExecutor {
 
 
         chunkManager.unlockChunk(world, newChunkX, newChunkZ);
-
         chunkManager.getOrLoadChunk(world, newChunkX, newChunkZ);
-        Chunk chunk = world.getChunkAt(newChunkX, newChunkZ);
-
-        if (chunk.isLoaded()){
-            chunkManager.loadUnlockedChunksFromConfig();
-        }else {
-            System.out.println("Fehler");
-        }
-        chunk.unload();
-        chunk.load();
+        chunkManager.updateChunks(player);
 
 
 

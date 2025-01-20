@@ -14,3 +14,7 @@ commands:
   expand:
     description: Schaltet jeweils einen Chunk in jede Himmelsrichtung frei!
     usage: /<command>
+  ChunkReset:
+    description: Startet das Plugin neu
+    usage: /<command>
+    aliases: /cr

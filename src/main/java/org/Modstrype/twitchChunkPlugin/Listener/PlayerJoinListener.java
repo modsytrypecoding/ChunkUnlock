@@ -4,6 +4,7 @@ package org.Modstrype.twitchChunkPlugin.Listener;
 import org.Modstrype.twitchChunkPlugin.Chunk.ChunkManager;
 import org.bukkit.Chunk;
 import org.bukkit.World;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -18,6 +19,7 @@ public class PlayerJoinListener implements Listener {
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
+        Player player = event.getPlayer();
         Chunk spawnChunk = event.getPlayer().getLocation().getChunk();
         World world = spawnChunk.getWorld();
 
@@ -28,6 +30,7 @@ public class PlayerJoinListener implements Listener {
         if (!chunkManager.isChunkUnlocked(world, x, z)) {
             chunkManager.unlockChunk(world, x, z);
             chunkManager.getOrLoadChunk(world, x, z);
+            chunkManager.updateChunks(player);
         }
     }
 }

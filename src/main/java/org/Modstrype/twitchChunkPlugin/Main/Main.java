@@ -6,6 +6,7 @@ import com.comphenix.protocol.ProtocolManager;
 import org.Modstrype.twitchChunkPlugin.Chunk.ChunkHider;
 import org.Modstrype.twitchChunkPlugin.Chunk.ChunkManager;
 import org.Modstrype.twitchChunkPlugin.Commands.MainCommand;
+import org.Modstrype.twitchChunkPlugin.Commands.ResetChunksCommand;
 import org.Modstrype.twitchChunkPlugin.Commands.UnlockChunksAllCommand;
 import org.Modstrype.twitchChunkPlugin.Listener.PlayerJoinListener;
 import org.Modstrype.twitchChunkPlugin.Listener.PlayerMovementListener;
@@ -42,6 +43,7 @@ public class Main extends JavaPlugin {
 
         getCommand("unlockchunk").setExecutor(new MainCommand(chunkManager));
         getCommand("expand").setExecutor(new UnlockChunksAllCommand(chunkManager));
+        getCommand("ChunkReset").setExecutor(new ResetChunksCommand(chunkManager));
 
         Bukkit.getPluginManager().registerEvents(new PlayerMovementListener(chunkManager), this);
         Bukkit.getPluginManager().registerEvents(new PlayerJoinListener(chunkManager), this);

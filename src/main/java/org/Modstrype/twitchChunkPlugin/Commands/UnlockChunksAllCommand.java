@@ -46,6 +46,7 @@ public class UnlockChunksAllCommand implements CommandExecutor {
             chunkManager.getOrLoadChunk(world, newX, newZ);
         }
 
+        chunkManager.updateChunks(player);
         player.sendMessage(ChatColor.GREEN + "[ChunkUnlocker] Alle angrenzenden Chunks wurden freigeschaltet!");
         return true;
     }
