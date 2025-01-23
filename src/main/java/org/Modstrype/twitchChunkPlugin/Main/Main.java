@@ -13,12 +13,18 @@ import org.Modstrype.twitchChunkPlugin.Listener.PlayerMovementListener;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
+
 public class Main extends JavaPlugin {
 
     private static Main instance;
     private ChunkManager chunkManager;
     private ProtocolManager protocolManager;
     private ChunkHider chunkHider;
+
+    public static Set<UUID> ignoringWorldChange = new HashSet<>();
 
     @Override
     public void onEnable() {
@@ -58,11 +64,4 @@ public class Main extends JavaPlugin {
         getLogger().info("[ChunkUnlocker] Plugin deaktiviert!");
     }
 
-    public static Main getInstance() {
-        return instance;
-    }
-
-    public ChunkManager getChunkManager() {
-        return chunkManager;
-    }
 }

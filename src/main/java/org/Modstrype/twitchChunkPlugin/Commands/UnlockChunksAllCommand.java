@@ -33,9 +33,9 @@ public class UnlockChunksAllCommand implements CommandExecutor {
 
 
         int[][] directions = {
-                {0, -1},  // North
-                {0, 1},   // South
-                {1, 0},   // East
+                {0, -1},  // Nord
+                {0, 1},   // Sued
+                {1, 0},   // Ost
                 {-1, 0}   // West
         };
 

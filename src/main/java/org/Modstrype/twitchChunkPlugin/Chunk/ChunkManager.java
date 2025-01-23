@@ -61,20 +61,34 @@ public class ChunkManager {
     }
 
     public void updateChunks(Player player) {
-        Location location = player.getLocation();
-        Optional<World> randomWorld = Bukkit.getWorlds().stream().filter(world -> world != player.getWorld()).findFirst();
+
+        Main.ignoringWorldChange.add(player.getUniqueId());
+
+        // 2) Teleport-Logik
+        Location oldLocation = player.getLocation();
+        Optional<World> randomWorld = Bukkit.getWorlds().stream()
+                .filter(world -> !world.equals(player.getWorld()))
+                .findFirst();
+
 
         randomWorld.ifPresent(world -> player.teleport(world.getSpawnLocation()));
-        player.teleport(location);
+
+        player.teleport(oldLocation);
+
+
+        Bukkit.getScheduler().runTaskLater(plugin, () -> {
+            Main.ignoringWorldChange.remove(player.getUniqueId());
+        }, 1L);
     }
 
     public void resetUnlockedChunks() {
         unlockedChunks.clear();
+        saveUnlockedChunksToConfig();
         plugin.saveConfig();
     }
 
     public Set<String> getUnlockedChunks() {
-        return new HashSet<>(unlockedChunks); // Gibt eine Kopie zurück, um Modifikationen zu vermeiden
+        return new HashSet<>(unlockedChunks);
     }
 
 

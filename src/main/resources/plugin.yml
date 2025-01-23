@@ -1,8 +1,9 @@
 name: ChunkUnlocker
-version: 1.0
+version: 1.1
 main: org.Modstrype.twitchChunkPlugin.Main.Main
 author: Modstrype
 description: "Ein Plugin mit welchem man Chunks Schritt für Schritt freischalten kann."
+api-version: 1.21
 depend:
   - ProtocolLib
 
